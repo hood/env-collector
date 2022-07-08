@@ -2,7 +2,7 @@ class EnvCollectorError extends Error {}
 
 export default class EnvCollector {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  constructor(private readonly value: any) {}
+  constructor(private value: string) {}
 
   public static collect(
     key: string,
@@ -21,6 +21,12 @@ export default class EnvCollector {
 
   asBoolean(): boolean {
     return this.value === 'true';
+  }
+
+  fallbackTo(fallbackValue: string): EnvCollector {
+    this.value = this.value || fallbackValue;
+
+    return this;
   }
 
   orFailWith(message: string, failCondition?: boolean): EnvCollector {

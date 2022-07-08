@@ -15,10 +15,9 @@ import EnvCollector from 'env-collector';
 const myEnvVar: string = EnvCollector.collect('MY_VAR').asString();
 
 // Defining a fallback value.
-const myEnvVar: string = EnvCollector.collect(
-  'ENV',
-  'development'
-).asString();
+const myEnvVar: string = EnvCollector.collect('ENV')
+  .fallbackTo('development')
+  .asString();
 
 // Fail if environment variable not set.
 const myEnvVar: string = EnvCollector.collect('API_ENDPOINT')
