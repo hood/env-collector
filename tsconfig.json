@@ -1,0 +1,25 @@
+{
+  "compilerOptions": {
+    "strictNullChecks": false,
+    "declaration": true,
+    "noImplicitAny": false,
+    "removeComments": true,
+    "allowSyntheticDefaultImports": true,
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "suppressImplicitAnyIndexErrors": true,
+    "lib": ["ES2022", "DOM"],
+    "target": "ES2022",
+    "typeRoots": ["./node_modules/@types"],
+    "moduleResolution": "node",
+    "strictPropertyInitialization": false,
+    "resolveJsonModule": true,
+    "module": "commonjs",
+    "esModuleInterop": true,
+    "outDir": "./dist",
+    "rootDir": "src",
+    "types": ["node"]
+  },
+  "include": ["./src/**/*"],
+  "exclude": ["./node_modules/"]
+}
