@@ -1,12 +1,11 @@
 {
   "name": "env-collector",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "type": "module",
   "author": "Andrea Cappuccio",
   "license": "MIT",
-  "main": "dist/index.js",
-  "source": "./src/index.ts",
   "main": "./dist/index.cjs",
+  "source": "./src/index.ts",
   "types": "./dist/index.d.ts",
   "scripts": {
     "build": "rm -rf ./dist/ && microbundle",
