@@ -1,6 +1,9 @@
 class EnvCollectorError extends Error {}
 
 export default class EnvCollector {
+  private failMessage?: string;
+  private failCondition?: boolean;
+
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   constructor(private value: string) {}
 
@@ -12,14 +15,20 @@ export default class EnvCollector {
   }
 
   asNumber(): number {
+    this.failIfShouldFail();
+
     return Number(this.value);
   }
 
   asString(): string {
+    this.failIfShouldFail();
+
     return this.value;
   }
 
   asBoolean(): boolean {
+    this.failIfShouldFail();
+
     return this.value === 'true';
   }
 
@@ -29,9 +38,20 @@ export default class EnvCollector {
     return this;
   }
 
-  orFailWith(message: string, failCondition?: boolean): EnvCollector {
-    if (!this.value && failCondition !== false)
-      throw new EnvCollectorError(message);
-    else return this;
+  orFailWith(message: string): EnvCollector {
+    this.failMessage = message;
+
+    return this;
+  }
+
+  onlyFailIf(condition: boolean): EnvCollector {
+    this.failCondition = condition;
+
+    return this;
+  }
+
+  private failIfShouldFail(): void {
+    if (!this.value && this.failMessage && this.failCondition !== false)
+      throw new EnvCollectorError(this.failMessage);
   }
 }

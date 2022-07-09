@@ -1,5 +1,7 @@
 # ENV COLLECTOR
-## A lightweight and simple way to handle environment variables for NodeJS.
+#### A lightweight and simple way to handle environment variables for NodeJS.
+
+----
 
 
 ### Installation
@@ -26,6 +28,7 @@ const myEnvVar: string = EnvCollector.collect('API_ENDPOINT')
   
 // Only fail if a certain condition is met.
 const myEnvVar: string = EnvCollector.collect('PRODUCTION_SECRET')
-  .orFailWith('Environment variable `PRODUCTION_SECRET` not set!', isProduction === true)
+  .orFailWith('Environment variable `PRODUCTION_SECRET` not set!'
+  .onlyFailIf(isProduction)
   .asString();
 ```
